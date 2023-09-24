@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center my-5">
+  <div class="card login-card">
+    <div class="card-header bg-contrast-color" >
+      <h5 class="card-title primary-bg-color">Login</h5>
+    </div>
+    <div class="card-body bg-contrast-color">
+      <form method="post">
+        {% csrf_token %}
+        <ul class="list-group list-group-flush"> 
+            {% for field in form %}
+                <li class="list-group-item bg-contrast-color">
+                    <div class="">
+                        {{ field.errors }}
+                    </div> 
+                    <div>
+                        <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                    </div>   
+                    <div>
+                        {{ field }}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="d-flex justify-content-center">
+          <button type="submit" class="btn btn-outline-success">Login</button>
+        </div> 
+      </form>
+    </div>
+  </div>
+</div>
+
+  
+
+{% endblock %}

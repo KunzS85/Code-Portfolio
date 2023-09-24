@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %} Reitplatzplaner {% endblock title %}
+
+
+{% block body %} 
+    <div class="container-fluid d-flex flex-column mb-2">
+        <div class="d-flex justify-content-center my-2">
+            <h3>Offenstall Brügglen</h3>
+        </div>
+        <div class="d-flex justify-content-center fw-bold">
+            <p class="fw-bold my-1">Reitplatz-Reglement:</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <ul style="padding-left: 0rem;">
+                {% for rule in rules %}
+                    <p class="text-center my-2 px-5">
+                        {{rule.text}}
+                    </p>
+                    <hr class="rule-border">
+                    
+                {% endfor %} 
+                
+            </ul>
+        </div>
+        
+        <div class="text-center">
+            <p class="fw-bold my-2">Nutzungsinformationen</p>
+            <p class="my-2 mx-5">Um Benutzungszeiten und Details zu sehen, wird ein Login benötigt. </p>
+            <p class="my-2 mx-5">Terminbuchungen sind nur im Tageskalender möglich.</p>     
+            <p class="my-2 mx-5">Der Wochenkalender bietet einen Überblick über die Besetzung des Platzes und desen Kapazität.</p>
+            <p class="my-2 mx-5">Details zu den einzelnen Zeiten können per Klick auf die gewünschte Zeit angesehen werden.</p>
+            <p class="my-2 mx-5">In "Mein Profil" können bereits gebuchte Zeiten angesehen und gelöscht werden.</p>    
+        </div>
+        
+    </div>
+{% endblock body %}

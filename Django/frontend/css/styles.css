@@ -1,0 +1,42 @@
+.primary-background-body {
+    background-color: #124749 ; 
+    color: #C3BFB9
+}
+
+.primary-color {
+    color: #124749 ; 
+}
+
+.bg-contrast-color {
+    background-color: #C3BFB9;
+}
+
+.contrast-color {
+    color: #C3BFB9;
+}
+
+.hr-in-contrast {
+    border: 1px solid #C3BFB9;
+}
+
+.delete-btn-color {
+    color:red;
+}
+
+.login-card {
+    width: 16rem;
+}
+
+.link-hide {
+    text-decoration: none; 
+    color: #124749;
+}
+
+.rule-p {
+    max-width: 75%;
+}
+
+.rule-border{
+    border-bottom: 1px dashed #C3BFB9;
+    
+}

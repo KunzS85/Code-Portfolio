@@ -1,0 +1,47 @@
+<nav class="navbar sticky-top navbar-expand-md bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Reitplatzkalender</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            {% for calendar in calendars %}
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{calendar.name}}
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="{% url 'kalender:week' calendar.id%}">Wochenkalender</a></li>
+                  <li><a class="dropdown-item" href="{% url 'kalender:calendar' calendar.id %}">Tageskalender</a></li>
+                </ul>
+              </li>
+            {% endfor %}
+
+
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'profiles:detail' request.user.id %}">Mein Profil</a>
+              </li>
+                {% if request.user.is_staff or request.user.is_superuser  %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+                  </li>
+                {% endif %}
+            {% endif %}
+            </ul>
+            <ul class="navbar-nav me-2 mb-2 mb-md-0">
+            {% if request.user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+              </li>
+            {% endif %}
+            </ul>
+        </div>
+    </div>  
+</nav>
+  

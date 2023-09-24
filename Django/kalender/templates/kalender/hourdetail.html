@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %} Kalender {% endblock title %}
+
+
+{% block body %} 
+    <div class="container-fluid my-2">
+        <div class="d-flex justify-content-start">
+            <a class="btn btn-outline-secondary my-2 me-1 bg-contrast-color" href="{% url 'kalender:week' current_calendar.id%}?selectedDate={{chosen_hour_start|date:'Y-m-d'}}"> <i class='bx bx-left-arrow-alt' ></i> </a>
+        </div>
+        <div class="card">
+            <div class="card-header bg-contrast-color">
+                <h4>{{current_calendar.name}}</h4> <br>
+                    {{chosen_hour_start|date:'d.m.y'}} von {{chosen_hour_start|date:'H:i'}} bis {{chosen_hour_end|date:'H:i'}}
+            </div>
+            <div class="card-body bg-contrast-color">
+                <ul class="list-group list-group-flush">
+                     {%if reservations %}
+                        <li class="list-group-item bg-contrast-color" >
+                            <h5>Reservationen:</h5>
+                        </li>
+                        {% for reservation in reservations %}
+                            <li class="list-group-item bg-contrast-color">
+                                <div>
+                                    {{reservation.user|title}} von {{ reservation.start_time|date:'H:i'}} bis {{ reservation.end_time|date:'H:i'}} für {{reservation.use_type}}
+                                </div> 
+                            </li>    
+                        {% endfor %} 
+                    {% endif %}
+                    {%if closed_time_windows %}
+                        <li class="list-group-item bg-contrast-color">
+                            <h5>Geschlossene Zeitfenster:</h5>
+                        </li>
+                        {% for closed_time_window in closed_time_windows %}
+                        <li class="list-group-item bg-contrast-color">
+                            <div>
+                                {{closed_time_window.reason|title}} von {{ closed_time_window.start_time|date:'H:i'}} bis {{ closed_time_window.end_time|date:'H:i'}}
+                            </div> 
+                        </li>    
+                        {% endfor%} 
+                    {% endif %}
+                    {%if closing_reason %}
+                    <li class="list-group-item bg-contrast-color" >
+                        <h5>Ganzer Tag geschlossen:</h5>
+                    </li>
+                    <li class="list-group-item bg-contrast-color" >
+                        <div>
+                            {{closing_reason|title}}
+                        </div> 
+                    </li> 
+                    {% endif %}
+                </ul>
+
+            </div>
+        </div>
+
+
+    </div>
+{% endblock body %}

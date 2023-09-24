@@ -1,0 +1,52 @@
+<section id="calendar">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="bg-{% if message.tags %}{{ message.tags }}{% endif %} bg-gradient text-center text-white py-4">{{ message }}</div>  
+        {% endfor %}
+    {% endif %}
+        <div>
+            <span class="d-flex justify-content-between">
+                <a class="btn btn-outline-secondary my-2 me-1 bg-contrast-color" href="{% url 'kalender:week' current_calendar.id %}?selectedDate={{ previous_date }}"> <i class='bx bx-left-arrow-alt' ></i> </a>
+                <div style="text-align: center;">
+                    <h4>{{current_calendar.name}}</h4> 
+                    {{ selected_date|date:"F Y" }}
+                </div> 
+                <a class="btn btn-outline-secondary my-2 bg-contrast-color" href="{% url 'kalender:week' current_calendar.id %}?selectedDate={{ next_date }}" > <i class='bx bx-right-arrow-alt'></i> </a> 
+            </span>
+        </div>
+    
+        <div class="container-fluid">
+            <div class="row row-cols-7">
+                
+                {% for key, value in calendar_infos.items %}  
+                    <div class="col">
+                        <div class="card my-1 mx-1">
+                            <div class="card-header day-header bg-contrast-color" >
+                                <a class="link-hide" href="{% url 'kalender:calendar' current_calendar.id %}?selectedDate={{value.date|date:'Y-m-d'}}" >
+                                    <div class="card-title" >
+                                        <p class="mb-1">{{ value.date|date:"l" }}</p>
+                                        {{ value.date|date:"d.m.y" }}
+                                    </div>
+                                </a>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                {% for infos in value.day_infos%}
+                                    <li class="list-group-item d-flex justify-content-center" style="background-color: {{ infos.occupancy_colors}}">
+                                        <a href="{% url 'kalender:hour' current_calendar.id %}?date={{value.date|date:'Y-m-d'}}&time={{infos.interval|time:'H'}}" style="text-decoration: none; color: black;">
+                                            <div>
+                                                {{infos.interval|time:"H:i"}}
+                                            </div>
+                                        </a>    
+                                    </li>    
+                                {% endfor%} 
+                            </ul>
+                        </div>
+                    </div>    
+                {% endfor%}
+                    
+            </div>    
+        </div>
+    
+            
+
+</section>

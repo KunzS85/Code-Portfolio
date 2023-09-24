@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Tageskalender {% endblock title %}
+
+{% block body %} 
+    <div class="container-fluid my-2">
+        {% include "includes/cal_day.html" %}
+    </div>
+
+    {% if request.user.is_authenticated%}
+        {% include "includes/cal_input_form_sticky_footer.html" %}
+    {% endif %}
+    
+{% endblock body %}
+

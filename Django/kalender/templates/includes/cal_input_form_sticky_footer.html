@@ -1,0 +1,31 @@
+<nav class="navbar sticky-bottom navbar-expand-sm bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid d-flex justify-content-end">
+        <form method="POST" enctype="multipart/form-data" class="d-flex" role="reservation">
+            {% csrf_token %}
+
+            <div class="row">
+                <div class="row">
+                    <div class="col-12 mb-2 d-flex justify-content-end">
+                        {{form.use_type}}
+                    </div>
+                </div>
+                <div class="col-12 mb-2 d-flex justify-content-end">
+                    <label for="{{ form.event_date.id_for_label }}" style="color: white; margin-right: 15px;">Datum:</label>
+                    {{ form.event_date }}
+                </div>
+				<div class="col-12 d-flex justify-content-end">
+                    <label for="{{ form.event_time_start.id_for_label }}" style="color: white; margin-right: 15px;">Von:</label>
+                    {{ form.event_time_start }}
+                    <label for="{{ form.event_time_end.id_for_label }}" style="color: white; margin-right: 15px;">Bis:</label>
+                    {{ form.event_time_end }}
+                </div>
+            </div>
+            <div class="row">
+				<div class="col-12">
+					<button class="btn btn-outline-success mt-2" type="submit">Reservieren</button>
+				</div>
+            </div>
+            
+        </form>
+    </div>
+</nav>

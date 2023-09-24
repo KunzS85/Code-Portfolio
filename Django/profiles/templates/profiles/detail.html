@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}{{ user.username }}{% endblock title %}
+
+{% block body %}
+<div class="container mt-5">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="bg-{% if message.tags %}{{ message.tags }}{% endif %} bg-gradient text-center text-white py-4">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="card">
+        <div class="card-header bg-contrast-color">
+            <h3>Mein Profil</h3>
+        </div>
+        <div class="card-body bg-contrast-color">
+            <h4>Name: {{ user.username|title  }}</h4>
+
+            {% if events_by_calendar %}
+            <h5>Meine Reservationen:</h5>
+                {% for calendar in events_by_calendar %}
+                    {% if calendar.0 %}
+                        {{ calendar.0.calendar.name}}
+                    {% endif %}
+                        <ul>
+                            {% for event in calendar %}
+                                    <li class="bg-contrast-color">
+                                        {{ event.start_time|date:'l d.m.y H:i' }} - {{ event.end_time|date:'H:i' }}
+                                        <a href="{% url 'profiles:detail' user.id %}?fC={{calendar.0.calendar.id}}&dE={{event.id}}"><i class='bx bx-x-circle delete-btn-color' ></i></a>
+                                    </li>
+                                    {% empty %}
+                                    <li>No events reserved.</li>
+                            {% endfor %}
+                        </ul>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock body %}
