@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+torch = "*"
+transformers = "*"
+pandas = "*"
+numpy = "*"
+sklearn = "*"
+pyqt5 = "*"
+deepl = "*"
+flask = "*"
+pymupdf = "*"
+pyinstaller = "*"
+auto-py-to-exe = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
