@@ -7,8 +7,8 @@ Da es sich mehrheitlich um private Projekte handelt, enthält der Code kaum Doku
 Ausnahme bildet hier die Bachelorarbeit "NLP zur Unterstützung von SNOMED CT Codierung". 
 
 Im Projekt "Umsetzung (Prototyp)" der Bachelorarbeit fehlen die NLP Modell und somit ist der Prototyp nicht lauffähig. 
-Die NLP Modelle können auf Grund ihrer grösse nicht auf GitHub gespeichert werden. 
-Bei Interesse stelle ich die Modelle jedoch auf anderem wege gerne zur verfügung.
+Die NLP Modelle können auf Grund ihrer Grösse nicht auf GitHub gespeichert werden. 
+Bei Interesse stelle ich die Modelle jedoch auf anderem wege gerne zur Verfügung.
 
 
 
