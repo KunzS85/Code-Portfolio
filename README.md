@@ -1,4 +1,4 @@
-# Projekt Portfolio von Sebastian Kunz
+# Code Portfolio von Sebastian Kunz
 
 Die einzelnen Ordner in diesem Repository enthalten unterschiedliche private Projekte.
 Das Repository dient der Ansicht von Code aus meiner Feder und soll einen Überblick über gewisse Umsetzungen bieten.
