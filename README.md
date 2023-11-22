@@ -8,7 +8,7 @@ Ausnahme bildet hier die Bachelorarbeit "NLP zur Unterstützung von SNOMED CT Co
 
 Im Projekt "Umsetzung (Prototyp)" der Bachelorarbeit fehlen die NLP Modell und somit ist der Prototyp nicht lauffähig. 
 Die NLP Modelle können auf Grund ihrer Grösse nicht auf GitHub gespeichert werden. 
-Bei Interesse stelle ich die Modelle jedoch auf anderem wege gerne zur Verfügung.
+Bei Interesse stelle ich die Modelle jedoch auf anderem Wege gerne zur Verfügung.
 
 
 
