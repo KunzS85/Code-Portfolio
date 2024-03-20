@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="section-auth">
+    <div class="d-flex justify-content-center my-5">
+      <div class="card">
+        <div class="card-header own-card-header">
+          <h5 class="card-title own-card-title" >Passwort zurücksetzen</h5>
+        </div>
+        <div class="card-body own-card-bg-color">
+          <form method="post">
+            {% csrf_token %}
+            <ul class="list-group list-group-flush"> 
+                {% for field in form %}
+                    <li class="list-group-item own-card-bg-color">
+                        <div class="">
+                            {{ field.errors }}
+                        </div> 
+                        <div>
+                            <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                        </div>   
+                        <div>
+                            {{ field }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-outline-success">E-Mail erhalten</button>
+            </div> 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+{% endblock %}

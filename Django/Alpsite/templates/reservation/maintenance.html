@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+{% load qr_code %}
+
+{% block content %}
+
+    <div class="section-maintenance">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="card">
+                <div class="card-body own-card-bg-color">
+                    <div class="card">
+                        <div class="card-header own-card-header">
+                            <h6 class="own-card-title">User-Anträge</h6>
+                        </div>
+                        <div class="card-body own-card-bg-color">
+                            <ul class="list-group list-group-flush">
+                                {% for request in user_applications %}
+                                <li class="list-group-item own-card-bg-color">
+                                    <a href="{% url 'application:userinfo' request.user.id %}">{{request.user.username}}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card mt-1">
+                        <div class="card-header own-card-header">
+                            <h6 class="own-card-title">Anfragen</h6>
+                        </div>
+                        <div class="card-body own-card-bg-color">
+                            <ul class="list-group list-group-flush">
+                                {% for request in reservation_requests %}
+                                <li class="list-group-item own-card-bg-color">
+                                    <div class="col text-center">
+                                        {{request.user}} von {{request.from_date|date:'d.m.y'}} bis {{request.to_date|date:'d.m.y'}}
+                                    </div>
+                                    <div class="col">
+                                        <div class="d-flex">
+                                            <a class="btn btn-outline-danger me-auto p-2" 
+                                            href="{% url 'reservation:maintenance' %}?delete={{ request.id }}" > 
+                                                <i class='bx bx-message-x'></i>
+                                            </a>
+                                            <a class="btn btn-outline-success p-2" 
+                                            href="{% url 'reservation:maintenance' %}?approve={{ request.id }}" > 
+                                                <i class='bx bx-message-check'></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>  
+                    </div>
+                    <div class="card mt-1">
+                        <div class="card-header own-card-header">
+                            <h6 class="own-card-title">QR-Codes</h6>
+                        </div>
+                        <div class="card-body own-card-bg-color">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item own-card-bg-color">
+                                    {% for info in information_details %}
+                                        <div class="col">
+                                            <a href="{% url 'reservation:maintenance' %}?qr={{ info.id }}" > 
+                                                <i class='bx bx-qr-scan'></i>
+                                                {{info.title}}
+                                                {% if info.secure %}
+                                                    <i class='bx bx-lock'></i>
+                                                {% endif %}
+                                            </a>                                        
+                                        </div>
+                                    {% endfor %}
+                                </li>
+                                {% if info_detail_url %}
+                                    <li class="list-group-item text-center own-card-header">
+                                        <h6 class="own-card-title">{{ info_detail.title }}</h6>
+                                    </li>
+                                    <li class="list-group-item text-center">
+                                        {% qr_from_text info_detail_url size="t" image_format="png" %}
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+{% endblock content %}

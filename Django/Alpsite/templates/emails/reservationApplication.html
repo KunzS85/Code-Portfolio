@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation von {{ reservation.user.username }}</title>
+</head>
+<body>
+    <p>Neue Reservationsanfrage von {{ reservation.user.username }} 
+    mit der E-Mail: {{ reservation.user.email }}
+    <br><br>
+    Die Reservation ist vom 
+    {{ reservation.from_date|date:'d.m.y' }} - {{ reservation.to_date|date:'d.m.y'  }} 
+    <br><br>
+    Um die Reservation abzuschliessen benötigt es noch eine 
+    Zu- oder Absage der Reservation auf 
+    <a href="{{ huette_link }}">"Der Alp-Hütte"</a>
+    <br><br>
+    Dieses Mail wurde automatisch generiert und 
+    die Adresse wird nicht bewirtschaftet! <br>
+    !!! Bitte sende keine Mails an diese Adresse !!!</p>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="section-auth">
+    <div class="d-flex justify-content-center my-5">
+      <div class="card">
+        <div class="card-header own-card-header">
+          <h5 class="card-title own-card-title" >Login</h5>
+        </div>
+        <div class="card-body own-card-bg-color">
+          <form method="post">
+            {% csrf_token %}
+            <ul class="list-group list-group-flush">
+                {% for field in form %}
+                    <li class="list-group-item own-card-bg-color">
+                        <div class="">
+                            {{ field.errors }}
+                        </div> 
+                        <div>
+                            <label for="{{ field.id_for_label }}">{{ field.label_tag }}</label>
+                        </div>   
+                        <div>
+                            {{ field }}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-outline-success">Login</button>
+            </div> 
+          </form>
+        </div>
+        <div class="card-footer own-card-bg-color text-center">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item own-card-bg-color">
+              <a href="{% url 'communication:pwreset' %}">Passwort vergessen?</a>
+            </li>
+            <li class="list-group-item own-card-bg-color">
+              <a href="{% url 'application:applicationForm' %}">Antrag für Login</a>
+            </li>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+
+{% endblock %}

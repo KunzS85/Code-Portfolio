@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block content %}
+
+    <section class="section-heading">
+        <header class="header-background">
+            <div class="header__heading-box">
+                <h1>
+                    <span class="heading-primary">Die Alp</span>
+                    <span class="heading-primary--sub"
+                        >eine Oase zum Wohlfühlen..</span
+                    >
+                </h1>
+            </div>
+        </header>
+        {% if not request.user.is_authenticated %}
+        <div class="centered-text">
+            <p class="centered-text__content">
+                <a href="{% url 'application:applicationForm' %}">Antrag für Login</a>
+            </p>
+        </div>
+        {% endif %}
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Deine Reservation wurde {{ msg }}</title>
+</head>
+<body>
+    <p> Deine Reservationsanfrage auf  
+    <a href="{{ huette_link }}">"Der Alp-Hütte"</a> 
+    vom {{ reservation.from_date|date:'d.m.y' }} bis {{ reservation.to_date|date:'d.m.y'  }} 
+    wurde {{ msg }}
+    <br><br>
+    Dieses Mail wurde automatisch generiert und 
+    die Adresse wird nicht bewirtschaftet! <br>
+    !!! Bitte sende keine Mails an diese Adresse !!!</p>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<div class="col-auto px-0 bg-dark">
+    <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-decoration-none menu-title">
+            <span class="fs-5 d-none d-sm-inline">Alp</span>
+        </a>
+        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+            <li class="">
+                <a href="{% url 'alp:home' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-home'></i> <span class="ms-1 d-none d-sm-inline">Home</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="{% url 'alp:information' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-info-circle'></i> <span class="ms-1 d-none d-sm-inline">Information</span></a>
+            </li>
+            <li class="">
+                <a href="{% url 'reservation:reservation' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-calendar'></i> <span class="ms-1 d-none d-sm-inline">Reservation</span> </a>
+            </li>
+            <li class="">
+                <a href="{% url 'alp:gallery' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-camera'></i> <span class="ms-1 d-none d-sm-inline">Gallery</span> </a>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="">
+                <a href="{% url 'material:index' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-list-check' ></i> <span class="ms-1 d-none d-sm-inline">Material</span> </a>
+            </li>
+            <li class="">
+                <a href="{% url 'profiles:detail' request.user.id %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-user'></i> <span class="ms-1 d-none d-sm-inline">My Profile</span> </a>
+            </li>
+            {% endif %}
+            <li class="">
+                <a href="{% url 'alp:contact' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bxs-contact'></i> <span class="ms-1 d-none d-sm-inline">Contact</span> </a>
+            </li>
+            {% if request.user.is_staff or request.user.is_superuser  %}
+            <li class="">
+                <a href="{% url 'reservation:maintenance' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bxs-traffic'></i> <span class="ms-1 d-none d-sm-inline">Maintenance</span> </a>
+            </li>
+            <li class="">
+                <a href="{% url 'admin:index' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-cog'></i> <span class="ms-1 d-none d-sm-inline">Admin</span> </a>
+            </li>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+            <li class="">
+                <a href="{% url 'logout' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-log-out-circle' ></i> <span class="ms-1 d-none d-sm-inline">Logout</span> </a>
+            </li>
+            {% else %}
+            <li class="">
+                <a href="{% url 'login' %}" class="nav-link px-0 align-middle menu-item">
+                    <i class='bx bx-log-in-circle'></i> <span class="ms-1 d-none d-sm-inline">Login</span> </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

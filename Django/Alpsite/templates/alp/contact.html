@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<section class="section-contact">
+    <div class="contact">
+        {% for contact in contacts %}
+
+        <div class="contact__box">
+            <h3 class="heading-secondary--sub">{{contact.name}}</h3>
+            <p>
+                Telefon: <br />
+                {{contact.phone}} <br />
+                E-Mail: <br />
+                {{contact.email}}
+            </p>
+        </div>
+
+        {% endfor %}
+    </div>
+</section>
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="col-md-6 mb-2">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="card-title heading-tertiary--small">{{contact.name}}</h3>
+            <p class="card-text">
+                Telefon: <br />
+                {{contact.phone}} <br />
+                E-Mail: <br />
+                {{contact.email}}
+            </p>
+        </div>
+    </div>
+</div> -->

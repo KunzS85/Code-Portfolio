@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <div class="section-material">
+        <h3 class="heading-tertiary">Verbrauchsmaterial & ToDo's</h3>
+        <p>Die Liste ist zur Kommunikation gedacht.<br>
+             Nutzt sie und teilt mit was vorhanden ist oder fehlt</p>
+
+        <div class="ms-4 mt-3 mb-3">
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form%}
+                    {{ field }}
+                {% endfor %}
+                <button type="submit" class="btn btn-outline-secondary ms-1">
+                    <i class='bx bx-list-plus' ></i>
+                </button>  
+            </form>
+        </div>
+
+        {% if existing_items %}
+        <h5 class="ms-4">Vorhanden</h5>
+        <ul class="item_list">
+            {% for item in existing_items %}
+                <li>
+                    <div class="my-1">
+                        <span class="{% if item.completed %} item_completed {% endif %} item_item ms-3">
+                            {{item.title}}
+                        </span> 
+                        {% if request.user.is_staff or request.user.is_superuser %}
+                        <a href="{% url 'material:index'%}?kill={{item.id}}" class="btn btn-outline-danger btn-sm ms-2">
+                            <i class='bx bx-x-circle'></i>
+                        </a>
+                        {% endif %}
+
+                        <a href="{% url 'material:index'%}?empty={{item.id}}" class="btn btn-outline-warning btn-sm ms-2">
+                            <i class='bx bx-minus-circle' ></i>
+                        </a>                       
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if empty_items %}
+        <h5 class="ms-4">Aktuell nicht vorhanden</h5>
+        <ul class="item_list">
+            {% for item in empty_items %}
+                <li>
+                    <div class="my-1">
+                        <span class="{% if item.completed %} item_completed {% endif %} item_item ms-3">
+                            {{item.title}}
+                        </span> 
+                        {% if request.user.is_staff or request.user.is_superuser %}
+                        <a href="{% url 'material:index'%}?kill={{item.id}}" class="btn btn-outline-danger btn-sm ms-2">
+                            <i class='bx bx-x-circle'></i>
+                        </a>
+                        {% endif %}
+                        
+                        <a href="{% url 'material:index'%}?refill={{item.id}}" class="btn btn-outline-success btn-sm ms-2">
+                            <i class='bx bx-plus-circle' ></i>
+                        </a>                        
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+{% endblock content %}

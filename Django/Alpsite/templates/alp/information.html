@@ -1,0 +1,34 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<section class="section-information">
+    <h2 class="heading-secondary">Herzlich Willkommen</h2>
+    <span class="heading-secondary--sub">schön besuchst du unsere Hütte</span>
+
+    <p>Hier findest du alles was du zur Nutzung der Hütte wissen musst...</p>
+
+    <p>
+        Bitte teile deinen Aufenthalt - mache einen Eintrag ins Tagebuch ☺.
+    
+        Damit du deinen Aufenthalt geniessen kannst, haben wir nachfolgend ein
+        paar Infos für dich. 
+        In der Küche hat es ein Merkblatt, auf dem die wichtigsten Punkte
+        nochmals aufgeführt sind. 
+        Bitte trage Sorge zur Hütte und zu den alten Fenstern (diese sind
+        Chrigus Heiligtum) und 
+        verlasse diese so wie du sie angetroffen hast.
+    </p>
+    <div class="section-link">
+    <!-- <h3 class="heading-tertiary">Inhaltsverzeichnis</h3> -->
+    
+        <ul class="ul-link">
+            {% for info in all_infos %}
+            <li class="info-list-item">
+                <a class="information__link" href="{% url 'alp:info_detail' info.id %}"
+                    >{{info.title}}</a
+                >
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+{% endblock content %}

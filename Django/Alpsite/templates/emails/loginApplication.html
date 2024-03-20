@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Loginanfrage von {{ user.first_name }} {{ user.last_name }}</title>
+</head>
+<body>
+    <p>Neue Loginanfrage von {{ user.first_name }} {{ user.last_name }}
+    mit der E-Mail {{ user.email }}
+    <br><br>
+    Um die Anfrage abzuschliessen benötigt es noch eine 
+    Zu- oder Absage der Loginanfrage auf 
+    <a href="{{ huette_link }}">"Der Alp-Hütte"</a>
+    <br><br>
+    Dieses Mail wurde automatisch generiert und 
+    die Adresse wird nicht bewirtschaftet! <br>
+    !!! Bitte sende keine Mails an diese Adresse !!!</p>
+</body>
+</html>

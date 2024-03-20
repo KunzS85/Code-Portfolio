@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="section-profile">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header own-card-header text-center">
+                    <h6 class="own-card-title">{{ user.username }}</h6>
+                </div>
+                <div class="card-body own-card-bg-color">
+                    <ul class="list-group list-group-flush">
+                        {%if current_reservations%}
+                            <li class="list-group-item own-card-bg-color">
+                                <h5>Aktueller Aufenthalt</h5>
+                                {{ current_reservations.from_date|date:'d.m.y' }} - {{ current_reservations.to_date|date:'d.m.y'  }} 
+                            </li>
+                        {% endif %}
+                        {%if future_duty_reservations%}
+                            <li class="list-group-item own-card-bg-color">
+                                <h5>Verbindliche Reservationen</h5>
+                                <ul>
+                                {% for reservation in future_duty_reservations %}
+                                    <li class="">
+                                        {{ reservation.from_date|date:'d.m.y' }} - {{ reservation.to_date|date:'d.m.y'  }}
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {%if future_reservations%}
+                            <li class="list-group-item own-card-bg-color">
+                                <h5>Zukünftige Reservationen</h5>
+                                <ul>
+                                {% for reservation in future_reservations %}
+                                    <li class="">
+                                        {{ reservation.from_date|date:'d.m.y' }} - {{ reservation.to_date|date:'d.m.y'  }}
+                                        <a href="{% url 'profiles:detail' user.id %}?delete={{ reservation.id }}">
+                                            <i class='bx bx-x-circle delete-btn-color' ></i>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                        {%if past_reservations%}
+                            <li class="list-group-item own-card-bg-color">
+                                <h5>Reservations Historie</h5>
+                                <ul>
+                                {% for reservation in past_reservations %}
+                                    <li class="">
+                                        {{ reservation.from_date|date:'d.m.y' }} - {{ reservation.to_date|date:'d.m.y'  }}
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </li>
+                        {% endif %}
+                    </ul>  
+                    <div>
+                        <p class="reservation_delete_info">Reservationen können nur bis 14 Tage vor Beginn gelöscht werden</p>
+                    </div>       
+                </div>  
+            </div>
+        </div>
+    </div>
+    
+                                            
+                           
+
+
+
+{% endblock content %}
+

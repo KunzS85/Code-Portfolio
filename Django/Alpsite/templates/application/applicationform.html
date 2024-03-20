@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="section-application">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header own-card-header text-center">
+                    <h6 class="own-card-title">Antrag für Login</h6>
+                </div>
+                <div class="card-body own-card-bg-color">
+                    <form method="post">
+                        {% csrf_token %}
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item own-card-bg-color text-center">
+                                Wir legen Wert auf einen direkten, wohlwollenden 
+                                und respektvollen Umgang mit Mensch, Material und Umwelt. <br>
+                                Deine Daten werden von uns ohne dein Einverständnis mit niemandem geteilt. <br>
+                                Zudem dienen sie unserer Sicherheit und Rückversicherung, 
+                                falls bei der Nutzung etwas schief läuft. <br>
+                                Mit dem Absenden des Formulars gibst du dein Einverständnis, 
+                                dass wir deine Daten, im Zusammenhang mit deiner Nutzung der Hütte, 
+                                verwenden dürfen.
+                            </li>
+                            <li class="list-group-item own-card-bg-color">
+                                <div class="row">
+                                    <div class="col-md-6 mt-1">
+                                        <div>{{ form.fname.label }}</div>
+                                        <div>{{ form.fname }}</div> 
+                                    </div>
+                                    <div class="col-md-6 mt-1">
+                                        <div>{{ form.lname.label }}</div>
+                                        <div>{{ form.lname }}</div> 
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.street.label }}</div>
+                                        <div>{{ form.street }}</div>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.street_nr.label }}</div>
+                                        <div>{{ form.street_nr }}</div>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.zip_code.label }}</div>
+                                        <div>{{ form.zip_code }}</div> 
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.location.label }}</div>
+                                        <div>{{ form.location }}</div>
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.mobil.label }}</div>
+                                        <div>{{ form.mobil }}</div> 
+                                        {% for error in form.mobil.errors %}
+                                            <div class="alert alert-danger">{{ error }}</div>      
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.email.label }}</div>
+                                        <div>{{ form.email }}</div>
+                                        {% for error in form.email.errors %}
+                                            <div class="alert alert-danger">{{ error }}</div>      
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.uname.label }}</div>
+                                        <div>{{ form.uname }}</div> 
+                                        {% for error in form.uname.errors %}
+                                            <div class="alert alert-danger">{{ error }}</div>      
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-6 mt-2">
+                                        <div>{{ form.pword.label }}</div>
+                                        <div>{{ form.pword }}</div> 
+                                        {% for error in form.pword.errors %}
+                                            <div class="alert alert-danger">{{ error }}</div>      
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <div class="d-flex justify-content-center">{{ form.self_description.label }}</div>
+                                        <div class="d-flex justify-content-center">{{ form.self_description }}</div> 
+                                    </div>
+                                </div>
+                            </li>
+                            <div class="card-footer own-card-bg-color d-flex justify-content-center">
+                                <button type="submit" class="btn btn-outline-success"> Abschicken </button>  
+                            </div>                              
+                        </ul>
+                    </form> 
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

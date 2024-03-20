@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<section class="section-gallery">
+    <h3 class="heading-tertiary">Gallery</h3>
+
+    <div class="gallery">
+        {% for image in images %}
+        <!-- <div class="col-sm-5 mb-2 me-2"> -->
+        <figure class="gallery__item">
+            <img
+                src="{{image.image.url}}"
+                alt="{{image.description}}"
+                class="gallery__img"
+            />
+            <!-- <figcaption>{{image.description}}</figcaption> -->
+        </figure>
+        <!-- </div> -->
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock content %}

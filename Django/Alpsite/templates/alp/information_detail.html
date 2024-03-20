@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+<section class="section-information">
+    <a href="{% url 'alp:information' %}" class="button-close">
+        <span class="button-close__icon">&nbsp;</span>
+    </a>
+
+    <div>
+        <h3 class="heading-tertiary">{{details.title}}</h3>
+
+        <div class="">{{details.description|safe}}</div>
+
+        <div class="image-container">
+            {% for image in images %}
+
+            <figure class="">
+                <img
+                    src="{{image.image.url}}"
+                    alt="{{image.description}}"
+                    class=""
+                    width= "90%"
+                    height="90%"
+                />
+                <figcaption>{{image.description}}</figcaption>
+            </figure>
+
+            {% endfor %}
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {% for video in videos %}
+                <div class="col-sm mb-2 me-2">
+                    <video
+                        src="{{video.video.url}}"
+                        controls
+                        type="video/mp4"
+                        class="video"
+                    >
+                        Your browser does not support the video
+                    </video>
+                    <!-- <p>{{video.description}}</p> -->
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="section-reservation">
+{% for message in messages %}
+
+{% endfor %}
+<div class="d-flex justify-content-between">
+    <a class="btn btn-outline-secondary mb-2 me-1" 
+    href="{% url 'reservation:reservation' %}?selectedDate={{ prev_month }}" > 
+        <i class='bx bx-left-arrow-alt' ></i> 
+    </a>
+    <a class="btn btn-outline-secondary mb-2 me-1" 
+    href="{% url 'reservation:reservation' %}?selectedDate={{ this_month }}" > 
+    Aktueller Monat
+    </a>
+    <a class="btn btn-outline-secondary mb-2" 
+    href="{% url 'reservation:reservation' %}?selectedDate={{ next_month }}" >
+        <i class='bx bx-right-arrow-alt'></i> 
+    </a> 
+</div>
+
+{{ calendar }} 
+
+<div class="container-fluid d-flex justify-content-center mt-2">
+    <div class="card">
+        <div class="card-header own-card-header d-flex justify-content-center">
+            <h6 class="card-title own-card-title" >Reservation</h6>
+        </div>
+        <form method="post">
+            <div class="card-body own-card-bg-color py-1">
+                {% csrf_token %}
+                <ul class="list-group list-group-flush">
+                    {% for message in messages %}
+                        <li class="bg-{% if message.tags %}{{ message.tags }}{% endif %} bg-gradient text-center list-group-item pt-1">{{ message }}</li> 
+                    {% endfor %} 
+                    {% for field in form %}
+                    <li class="list-group-item own-card-bg-color pt-1">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ field.id_for_label }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ field }}
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul> 
+            </div>  
+            <div class="card-footer own-card-bg-color d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-success"> Reservieren </button>  
+            </div>                
+        </form>
+    </div>
+</div>
+</section>
+{% endblock content %}

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="section-maintenance">
+    <div class="container-fluid d-flex justify-content-center">
+        <div class="card">
+            <div class="card-header own-card-header">
+                <h6 class="own-card-title">Anfrage von:</h6>
+            </div>
+            <div class="card-body own-card-bg-color">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item own-card-bg-color">
+                        <b>Username:</b> {{ userinfo.user.username }}
+                    </li>
+                    <li class="list-group-item own-card-bg-color">
+                        <b>Vorname:</b> {{ userinfo.user.first_name }}
+                    </li>
+                    <li class="list-group-item own-card-bg-color">
+                        <b>Nachname:</b> {{ userinfo.user.last_name }}
+                    </li>
+                    <li class="list-group-item own-card-bg-color">
+                        <b>E-Mail:</b> {{ userinfo.user.email }}
+                    </li>
+                    <li class="list-group-item own-card-bg-color">
+                        <b>Telefonnummer:</b> {{ userinfo.mobil }}
+                    </li>
+                    <li class="list-group-item own-card-bg-color">
+                        <b>Adresse:</b> <br>
+                        {{ userinfo.street }} {{ userinfo.street_nr }} <br>
+                        {{ userinfo.zip_code }} {{ userinfo.location }}
+                    </li>
+                    <li class="list-group-item own-card-bg-color">
+                        <b>Wer bin ich:</b> <br>
+                        {{ userinfo.self_description }}
+                    </li>
+                </ul>
+            </div>
+            <div class="card-footer own-card-bg-color">
+                <form method="post" action="{% url 'application:decision' userinfo.user.id %}">
+                    {% csrf_token %}
+                    <div class=" d-flex justify-content-center">
+                        <button class="btn btn-outline-danger me-auto p-2" type="submit" name="delete" value="{{ userinfo.user.id }}"><i class='bx bx-message-x'></i></button>
+                        <button class="btn btn-outline-success p-2" type="submit" name="approve" value="{{ userinfo.user.id }}"><i class='bx bx-message-check'></i></button>
+                    </div>
+                </form>
+            </div> 
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
